@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.15, pytest-9.0.3, pluggy-1.6.0 -- <workspace>/software-agent-sdk/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: <workspace>/software-agent-sdk
+configfile: pyproject.toml
+plugins: xdist-3.8.0, timeout-2.4.0, anyio-4.14.2, asyncio-1.3.0, forked-1.6.0, cov-7.0.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 6 items
+
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_control_echo_forwards_substitution_to_pipeline_consumer PASSED [ 16%]
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_control_printf_format_specifier_forwards_substitution PASSED [ 33%]
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_control_static_printf_handles_end_of_options_separator PASSED [ 50%]
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_repro_printf_format_operand_substitution_forwarded_to_pipeline_consumer FAILED [ 66%]
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_repro_printf_end_of_options_substitution_forwarded_to_jq FAILED [ 83%]
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_repro_printf_end_of_options_substitution_forwarded_to_bash FAILED [100%]
+
+=================================== FAILURES ===================================
+_ test_repro_printf_format_operand_substitution_forwarded_to_pipeline_consumer _
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py:100: in test_repro_printf_format_operand_substitution_forwarded_to_pipeline_consumer
+    assert decision.outcome == SecurityRisk.HIGH
+E   AssertionError: assert <SecurityRisk.LOW: 'LOW'> == <SecurityRisk.HIGH: 'HIGH'>
+E     
+E     - HIGH
+E     + LOW
+________ test_repro_printf_end_of_options_substitution_forwarded_to_jq _________
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py:114: in test_repro_printf_end_of_options_substitution_forwarded_to_jq
+    assert decision.outcome == SecurityRisk.HIGH
+E   AssertionError: assert <SecurityRisk.LOW: 'LOW'> == <SecurityRisk.HIGH: 'HIGH'>
+E     
+E     - HIGH
+E     + LOW
+_______ test_repro_printf_end_of_options_substitution_forwarded_to_bash ________
+tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py:127: in test_repro_printf_end_of_options_substitution_forwarded_to_bash
+    assert decision.outcome == SecurityRisk.HIGH
+E   AssertionError: assert <SecurityRisk.UNKNOWN: 'UNKNOWN'> == <SecurityRisk.HIGH: 'HIGH'>
+E     
+E     - HIGH
+E     + UNKNOWN
+=========================== short test summary info ============================
+FAILED tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_repro_printf_format_operand_substitution_forwarded_to_pipeline_consumer - AssertionError: assert <SecurityRisk.LOW: 'LOW'> == <SecurityRisk.HIGH: 'HIGH'>
+  
+  - HIGH
+  + LOW
+FAILED tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_repro_printf_end_of_options_substitution_forwarded_to_jq - AssertionError: assert <SecurityRisk.LOW: 'LOW'> == <SecurityRisk.HIGH: 'HIGH'>
+  
+  - HIGH
+  + LOW
+FAILED tests/sdk/security/defense_in_depth/test_policy_rails_reproduction.py::test_repro_printf_end_of_options_substitution_forwarded_to_bash - AssertionError: assert <SecurityRisk.UNKNOWN: 'UNKNOWN'> == <SecurityRisk.HIGH: 'HIGH'>
+  
+  - HIGH
+  + UNKNOWN
+========================= 3 failed, 3 passed in 0.09s ==========================
