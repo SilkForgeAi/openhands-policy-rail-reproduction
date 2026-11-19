@@ -87,6 +87,6 @@ Machine-specific local checkout paths in `evidence/*.log` were replaced with `<w
 
 This repository contains reproduction tests and execution logs only. No production fix is included.
 
-Upstream license and attribution: see [NOTICE](NOTICE).
+This repository's own content is MIT licensed ([LICENSE](LICENSE)). Upstream license and attribution: see [NOTICE](NOTICE).
 
 Prepared with AI assistance. The reported tests were executed locally against commit `641e161178cb934f38afcbe603125950611d1668`.
